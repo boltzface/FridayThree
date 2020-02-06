@@ -7732,7 +7732,7 @@ function onPlayerStateChange(event) {
       {
         console.log(state, 'state');
         console.log("not started");
-        setTimeout(fuckit, 3000);
+        // setTimeout(fuckit, 3000);
 
       }
 }
