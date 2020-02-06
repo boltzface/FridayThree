@@ -7744,7 +7744,7 @@ function onPlayerStateChange(event) {
       {
         // console.log(state, 'state');
         console.log(video, "not started", state);
-        setTimeout(tryagain, 2000);
+        // setTimeout(tryagain, 2000);
 
       }
 }
