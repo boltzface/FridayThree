@@ -7698,6 +7698,7 @@ function onYouTubeIframeAPIReady () {
   video = videos[Math.floor(Math.random() * videos.length)];
   infolink = "https://www.googleapis.com/youtube/v3/videos?id=" + video + "pzxaHo7CX5E&part=status&key=AIzaSyBbFWEfFgWIxHaQh1JvU9f8ci1rfUnVxXM";
   getdata(video);
+  console.log("loading video", video);
   player = new YT.Player('player', {
     height: '300',
     width: '100%',
@@ -7716,23 +7717,34 @@ function onPlayerReady(event) {
   player.playVideo();
 }
 
+function tryagain() {
+  console.log("trying again");
+  player.playVideo();
+  currentstate = player.getPlayerState();
+  // console.log(player.getPlayerState());
+  if (currentstate == -1)
+    {
+      // console.log(currentstate, 'state');
+      // console.log("still not started");
+      console.log(video, "is fucked", currentstate);
+      setTimeout(fuckit, 1000);
+
+    }
+}
+
 function onPlayerStateChange(event) {
 
   var state = event.data;
-  console.log(event.data, 'event');
-  console.log(YT.PlayerState);
   if (state == 0)
     {
-      console.log(state, 'state');
-      console.log("stopped");
       player.destroy();
       onYouTubeIframeAPIReady ();
     }
     if (state == -1)
       {
-        console.log(state, 'state');
-        console.log("not started");
-        // setTimeout(fuckit, 3000);
+        // console.log(state, 'state');
+        console.log(video, "not started", state);
+        setTimeout(tryagain, 2000);
 
       }
 }
