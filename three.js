@@ -7659,6 +7659,7 @@ function findlink2(value) {
 console.log(videos.length);
 
 function fuckit() {
+  console.log(video);
   window.location.reload(true)
 };
 
@@ -7672,7 +7673,7 @@ function getdata(video) {
   })
     .done(function( data ) {
       $.each( data.items, function( i, item ) {
-        console.log(data)
+        // console.log(data)
 
       });
     });
@@ -7695,10 +7696,8 @@ var infoink;
 
 function onYouTubeIframeAPIReady () {
   video = videos[Math.floor(Math.random() * videos.length)];
-  console.log(video)
   infolink = "https://www.googleapis.com/youtube/v3/videos?id=" + video + "pzxaHo7CX5E&part=status&key=AIzaSyBbFWEfFgWIxHaQh1JvU9f8ci1rfUnVxXM";
   getdata(video);
-  console.log(infolink)
   player = new YT.Player('player', {
     height: '300',
     width: '100%',
@@ -7719,11 +7718,21 @@ function onPlayerReady(event) {
 
 function onPlayerStateChange(event) {
 
-  var state = event.data
-  console.log(event.data, 'event')
+  var state = event.data;
+  console.log(event.data, 'event');
+  console.log(YT.PlayerState);
   if (state == 0)
-    console.log(state, 'state'),
-    console.log("stopped"),
-    player.destroy(),
-    onYouTubeIframeAPIReady ();
+    {
+      console.log(state, 'state');
+      console.log("stopped");
+      player.destroy();
+      onYouTubeIframeAPIReady ();
+    }
+    if (state == -1)
+      {
+        console.log(state, 'state');
+        console.log("not started");
+        setTimeout(fuckit, 3000);
+
+      }
 }
