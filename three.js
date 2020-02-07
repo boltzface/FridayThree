@@ -4,7 +4,7 @@ var videos = [
 "KZnou4zthz4"
 ];
 
-var linkys2 = [
+var linkys = [
 "https://m.youtube.com/watch?v=NdAiZkqBwAs",
 "https://m.youtube.com/watch?v=KZnou4zthz4",
 "https://m.youtube.com/watch?v=lnOzgU39Yow",
